@@ -64,3 +64,17 @@ entity Urgency : CodeList {
 
 type EMailAddress : String;
 type PhoneNumber  : String;
+
+annotate ProcessorService.Incidents with @changelog: {
+  keys: [ customer.name, createdAt ]
+} {
+  title    @changelog;
+  status   @changelog;
+  customer @changelog: [ customer.name ];
+};
+
+annotate ProcessorService.Incidents.conversation with @changelog: {
+  keys: [ author, timestamp ]
+} {
+  message  @changelog;
+}
